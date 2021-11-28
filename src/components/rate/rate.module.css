@@ -1,0 +1,11 @@
+.rate {
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+  margin: 24px 0;
+}
+
+.rate-item {
+  width: 30px;
+  height: 30px;
+}

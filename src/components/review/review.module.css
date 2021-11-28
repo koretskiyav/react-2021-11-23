@@ -1,0 +1,7 @@
+.review {
+  border-bottom: 1px solid #eee;
+}
+
+.review:last-child {
+  border-bottom: 0;
+}
