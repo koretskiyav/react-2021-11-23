@@ -8,7 +8,7 @@ export default ({ reviews }) => {
     <div className={styles.block}>
       <p className={styles.title}>Hey! Check out reviews!</p>
       {reviews.map((review) => (
-        <Review {...review} />
+        <Review key={review.id} {...review} />
       ))}
     </div>
   );

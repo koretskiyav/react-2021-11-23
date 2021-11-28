@@ -2,5 +2,13 @@ import React from 'react';
 import { ReactComponent as Star } from '../icons/star.svg';
 
 export default ({ rating }) => {
-  return <div>{Array(rating).fill(<Star />)}</div>;
+  return (
+    <span>
+      {Array(rating)
+        .fill(undefined)
+        .map((ignore, index) => (
+          <Star key={index} />
+        ))}
+    </span>
+  );
 };
