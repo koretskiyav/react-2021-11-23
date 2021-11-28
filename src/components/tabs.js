@@ -1,10 +1,13 @@
+import { Button } from '@rmwc/button';
+import '@rmwc/button/styles';
+
 export default function Tabs({ tabs, onChange }) {
   return (
     <div>
       {tabs.map(({ id, label }) => (
-        <button key={id} onClick={() => onChange(id)}>
+        <Button key={id} onClick={() => onChange(id)}>
           {label}
-        </button>
+        </Button>
       ))}
     </div>
   );
