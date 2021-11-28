@@ -4,7 +4,7 @@ import styles from './rate.module.css'
 export default function Rate({ value }) {
   return (
     <div>
-      {Array(value).fill().map((item, index) => {
+      {Array(value).fill(1).map((item, index) => {
         return <Star key={index} className={styles.star}/>
       })}
     </div>
