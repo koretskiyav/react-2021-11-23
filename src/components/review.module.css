@@ -1,0 +1,13 @@
+.reviewWrapper{
+  border-bottom: 1px solid grey;
+  border-radius: 5px;
+  padding: 1px 12px 10px 12px;
+}
+
+.reviewName{
+  font-weight: bold;
+}
+
+.reviewText{
+  font-style: italic;
+}

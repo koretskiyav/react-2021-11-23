@@ -1,0 +1,7 @@
+.rateWrapper{
+  display: flex;
+}
+
+.star{
+  width: 30px;
+}
