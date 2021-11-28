@@ -5,6 +5,8 @@ export const restaurants = [
     menu: [
       {
         id: 'd75f762a-eadd-49be-8918-ed0daa8dd024',
+        image:
+          'https://img.buzzfeed.com/video-api-prod/assets/d03461e6d185483da8317cf9ee03433e/BFV18861_ChickenTikkaMasala-ThumbA1080.jpg?output-format=auto&output-quality=auto&resize=600:*',
         name: 'Chicken tikka masala',
         price: 12,
         ingredients: ['chicken', 'rice'],
@@ -12,12 +14,15 @@ export const restaurants = [
       {
         id: 'c3cb8f92-a2ed-4716-92a1-b6ea813e9049',
         name: 'Naan',
+        image: 'https://rasamalaysia.com/wp-content/uploads/2019/03/naan3.jpg',
         price: 3,
         ingredients: ['bread'],
       },
       {
         id: 'bd129641-c0eb-432b-84b6-8b81d2930358',
         name: 'Samosa',
+        image:
+          'https://cookinmyhome.com/media/user_5/167/1626500688.samosa-3.jpg',
         price: 8,
         ingredients: ['chicken', 'bread'],
       },
@@ -44,12 +49,16 @@ export const restaurants = [
       {
         id: '25402233-0095-49ea-9939-1e67ed89ffb9',
         name: 'Margarita',
+        image:
+          'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Pizza_Margherita_stu_spivack.jpg/800px-Pizza_Margherita_stu_spivack.jpg',
         price: 9,
         ingredients: ['bread', 'cheese', 'tomatoes'],
       },
       {
         id: '90902233-0095-49ea-9939-1e67ed89ffb9',
         name: 'Chef pizza',
+        image:
+          'https://www.mamaroma.ru/dostavka/store/pictures/tovar/big/2037.jpg',
         price: 10,
         ingredients: ['bread', 'cheese', 'tomatoes', 'chicken'],
       },
@@ -82,18 +91,23 @@ export const restaurants = [
       {
         id: '08c9ffa0-d003-4310-9e15-20978743296e',
         name: 'Cinnamon buns',
+        image:
+          'https://venisonfordinner.com/wp-content/uploads/2021/02/sourdough-cinnamon-buns-1-1200x800.jpg',
         price: 5,
         ingredients: ['bread'],
       },
       {
         id: '64a4967c-2080-4a99-9074-4655a4569a95',
         name: 'Semlor',
+        image: 'https://tosse.se/wp-content/uploads/semlor.jpg',
         price: 2,
         ingredients: ['bread', 'cream'],
       },
       {
         id: '4bc8528e-26d1-46c3-a522-8e18d10c8c84',
         name: 'Saffron bun',
+        image:
+          'https://www.heynutritionlady.com/wp-content/uploads/2012/12/Swedish_Saffron_Buns-23.jpg',
         price: 4,
         ingredients: ['bread'],
       },
@@ -114,12 +128,16 @@ export const restaurants = [
       {
         id: '6c02c2ce-b868-4191-b4a7-8686429f4bac',
         name: 'Flat Iron Steak',
+        image:
+          'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F4544031.jpg',
         price: 10,
         ingredients: ['beef'],
       },
       {
         id: '99bb6fbb-e53b-4b7e-b9c2-23b63b77385d',
         name: 'Flat Iron Burger',
+        image:
+          'https://f3e6t7k9.stackpathcdn.com/wp-content/uploads/2017/11/patty.jpeg',
         price: 10,
         ingredients: ['bread', 'beef'],
       },

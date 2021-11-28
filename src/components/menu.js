@@ -1,11 +1,24 @@
+import { Grid, GridCell } from '@rmwc/grid';
+import { Typography } from '@rmwc/typography';
+
+import '@rmwc/grid/styles';
+import '@rmwc/typography/styles';
+
 import Product from './product';
 
 export default function Menu({ menu }) {
   return (
     <div>
-      {menu.map((product) => (
-        <Product key={product.id} product={product} />
-      ))}
+      <Typography use="headline6" tag="h2">
+        Menu
+      </Typography>
+      <Grid>
+        {menu.map((product) => (
+          <GridCell span={2}>
+            <Product key={product.id} product={product} />
+          </GridCell>
+        ))}
+      </Grid>
     </div>
   );
 }

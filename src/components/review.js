@@ -1,10 +1,6 @@
 import Rate from './rate';
 
-import { Card } from '@rmwc/card';
-import { CardPrimaryAction } from '@rmwc/card';
-import { CardActions } from '@rmwc/card';
-import { CardActionIcons } from '@rmwc/card';
-import { CardActionIcon } from '@rmwc/card';
+import { Card, CardPrimaryAction, CardActions } from '@rmwc/card';
 import { Typography } from '@rmwc/typography';
 
 import '@rmwc/card/styles';
@@ -13,8 +9,8 @@ import '@rmwc/icon/styles';
 
 export default function Review({ review }) {
   return (
-    <Card key={review.id}>
-      <CardPrimaryAction>
+    <Card>
+      <CardPrimaryAction style={{ padding: '0 1rem 1rem 1rem' }}>
         <Typography use="headline6" tag="h2">
           {review.user}
         </Typography>
@@ -22,7 +18,7 @@ export default function Review({ review }) {
           {review.text}
         </Typography>
       </CardPrimaryAction>
-      <CardActions>
+      <CardActions style={{ padding: '0 1rem 1rem 1rem' }}>
         <Rate value={review.rating} />
       </CardActions>
     </Card>

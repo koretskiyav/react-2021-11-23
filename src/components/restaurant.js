@@ -1,6 +1,8 @@
 import Menu from './menu';
 import Reviews from './reviews';
 
+import '@rmwc/grid/styles';
+
 export default function Restaurant({ restaurant }) {
   const averageRating =
     restaurant.reviews.reduce((accumulator, review) => {
@@ -10,7 +12,7 @@ export default function Restaurant({ restaurant }) {
   console.log(averageRating);
 
   return (
-    <div>
+    <div key={restaurant.id}>
       <Menu menu={restaurant.menu} />
       <Reviews reviews={restaurant.reviews} />
     </div>
