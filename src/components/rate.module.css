@@ -1,0 +1,14 @@
+.ratestar {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+
+    background-image: url("../icons/star_empty.svg");
+}
+
+.ratestar:hover,
+.ratestaractive {
+    background-image: url("../icons/star_yellow.svg");
+}
+
