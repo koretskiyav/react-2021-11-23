@@ -1,0 +1,31 @@
+.icon path {
+  fill: #3e8ed0;
+}
+
+.image {
+  border-radius: 8px;
+}
+
+.product {
+  width: 30%;
+  min-width: 200px;
+  min-height: 300px;
+  margin: 8px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 10px -5px rgba(29, 91, 139, 0.6);
+}
+.controlbar_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.controlbar {
+  display: flex;
+  align-items: center;
+}
+.amount {
+  display: inline-block;
+  margin: 0 10px;
+  min-width: 20px;
+}
