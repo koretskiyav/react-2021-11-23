@@ -14,7 +14,7 @@ export default function Reviews({ reviews }) {
       </Typography>
       <Grid>
         {reviews.map((review) => (
-          <GridCell span={3}>
+          <GridCell span={3} key={review.id}>
             <Review review={review} key={review.id} />
           </GridCell>
         ))}

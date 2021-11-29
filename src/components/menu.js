@@ -14,7 +14,7 @@ export default function Menu({ menu }) {
       </Typography>
       <Grid>
         {menu.map((product) => (
-          <GridCell span={2}>
+          <GridCell span={2} key={product.id}>
             <Product key={product.id} product={product} />
           </GridCell>
         ))}
