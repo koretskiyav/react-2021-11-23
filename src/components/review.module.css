@@ -4,3 +4,8 @@
     background: linear-gradient(45deg, #c6baee, #C5DDE8);
     border-radius: 8px;
 }
+
+.review_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
