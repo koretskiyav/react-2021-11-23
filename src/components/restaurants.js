@@ -1,7 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import Menu from './menu';
-import Reviews from './reviews';
+import Restaurant from './restaurant';
 import Tabs from './tabs';
 
 export default function Restaurants({ restaurants }) {
@@ -20,8 +19,7 @@ export default function Restaurants({ restaurants }) {
   return (
     <div>
       <Tabs tabs={tabs} onChange={setActiveId} />
-      <Menu menu={activeRestaurant.menu} />
-      <Reviews reviews={activeRestaurant.reviews} />
+      <Restaurant menu={activeRestaurant.menu} reviews={activeRestaurant.reviews} />
     </div>
   );
 }
