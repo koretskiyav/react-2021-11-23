@@ -8,8 +8,6 @@
 
 .product {
   width: 30%;
-  min-width: 200px;
-  min-height: 300px;
   margin: 8px;
   padding: 10px;
   border-radius: 8px;

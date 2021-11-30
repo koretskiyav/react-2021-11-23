@@ -9,7 +9,9 @@ export default function Review({ review }) {
       <Person className={style.icon} />
       <h2 className={style.user}>{review.user}</h2>
       <p className={style.text}>{review.text}</p>
-      <Rate value={review.rating} />
+      <div className={style.stars}>
+        <Rate value={review.rating} />
+      </div>
     </div>
   );
 }
