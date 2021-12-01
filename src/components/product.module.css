@@ -9,3 +9,8 @@
 .icon path {
   fill: red;
 }
+
+.star{
+  width: 40px;
+  height: 35px;
+}
