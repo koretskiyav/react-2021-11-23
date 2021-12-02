@@ -1,9 +1,9 @@
 import Product from './product';
 
-export default function Menu({ menu }) {
+export default function Menu({ props }) {
   return (
     <div>
-      {menu.map((product) => (
+      {props.map((product) => (
         <Product key={product.id} product={product} />
       ))}
     </div>

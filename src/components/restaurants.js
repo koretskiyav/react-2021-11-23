@@ -1,24 +1,27 @@
 import { useState, useMemo } from 'react';
-import Menu from './menu';
+import Restaurant from './restaurant';
 import Tabs from './tabs';
 
-export default function Restaurants({ restaurants }) {
-  const [activeId, setActiveId] = useState(restaurants[0].id);
+export default function Restaurants({ props }) {
+  const restos = props.slice();
+
+  //initial state
+  const [activeId, setActiveId] = useState(restos[0].id);
 
   const tabs = useMemo(
-    () => restaurants.map(({ id, name }) => ({ id, label: name })),
-    [restaurants]
+    () => restos.map(({ id, name }) => ({ id, label: name })),
+    [restos]
   );
 
-  const activeRestaurant = useMemo(
-    () => restaurants.find((restaurant) => restaurant.id === activeId),
-    [activeId, restaurants]
+  const activeResto = useMemo(
+    () => restos.find((resto) => resto.id === activeId),
+    [activeId, restos]
   );
 
   return (
     <div>
       <Tabs tabs={tabs} onChange={setActiveId} />
-      <Menu menu={activeRestaurant.menu} />
+      <Restaurant props={activeResto} />
     </div>
   );
 }

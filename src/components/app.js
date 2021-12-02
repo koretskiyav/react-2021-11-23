@@ -5,7 +5,7 @@ export default class App extends PureComponent {
   render() {
     return (
       <div>
-        <Restaurants restaurants={this.props.restaurants} />
+        <Restaurants props={this.props.restaurants} />
       </div>
     );
   }
