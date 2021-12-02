@@ -1,11 +1,25 @@
+.container {
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .card {
-  margin: 8px;
-  padding: 8px;
-  background: #eee;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  background: #ffffff;
+  border-width: 2px;
+  border-style: solid;
+  width: 200px;
+  height: 200px;
+  padding-top: 25px;
+  padding-left: 25px;
+  margin: 25px 25px 25px 0;
+  color: #111111;
+  font-weight: bold;
 }
 
 .icon path {
-  fill: red;
+  fill: black;
 }
