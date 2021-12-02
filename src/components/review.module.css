@@ -1,0 +1,13 @@
+.review {
+  margin-bottom: 15px;
+}
+.review-text {
+  margin-top: 5px;
+  color: #555;
+}
+.review-text::before {
+  content: '\201E';
+}
+.review-text::after {
+  content: '\201C';
+}
