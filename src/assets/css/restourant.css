@@ -1,0 +1,16 @@
+.restourant {
+  background-color: #f7f7f7;
+}
+
+.restourant__header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 8px;
+}
+
+.restourant__title {
+  line-height: .9;
+  margin: 0 15px 16px 8px;
+}
+
