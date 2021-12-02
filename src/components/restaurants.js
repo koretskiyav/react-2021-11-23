@@ -1,6 +1,8 @@
 import { useState, useMemo } from 'react';
 import Menu from './menu';
 import Tabs from './tabs';
+import Reviews from './reviews';
+import Rate from './rate';
 
 export default function Restaurants({ restaurants }) {
   const [activeId, setActiveId] = useState(restaurants[0].id);
@@ -18,7 +20,22 @@ export default function Restaurants({ restaurants }) {
   return (
     <div>
       <Tabs tabs={tabs} onChange={setActiveId} />
-      <Menu menu={activeRestaurant.menu} />
+      <Restaurant restaurant={activeRestaurant} />
     </div>
   );
+}
+
+function Restaurant({restaurant}) {
+  const totalReviews = restaurant.reviews.length
+  const averageRating = Math.round(restaurant.reviews.map(r => r.rating)
+    .reduce((a, b) => a + b) / totalReviews
+  )
+
+  return (
+    <div>
+      <Rate text="Average rating:" value={averageRating}/>
+      <Menu menu={restaurant.menu} />
+      <Reviews reviews={restaurant.reviews} />
+    </div>
+  )
 }

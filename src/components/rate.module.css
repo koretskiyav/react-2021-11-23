@@ -1,0 +1,10 @@
+.rate {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.star {
+    width: 17px;
+    vertical-align: bottom;
+}
