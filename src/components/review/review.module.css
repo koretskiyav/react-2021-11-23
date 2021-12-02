@@ -1,0 +1,23 @@
+.container {
+  width: 70%;
+  margin: 8px;
+  padding: 10px;
+  box-shadow: -1px 1px 18px -1px rgba(29, 91, 139, 0.2) inset;
+  border-radius: 10px;
+}
+.icon {
+  float: left;
+  width: 50px;
+}
+.user {
+  margin: 10px 70px 10px;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+.text {
+  margin-left: 70px;
+  font-size: 18px;
+}
+.stars{
+  margin: 10px 70px 10px;;
+}
