@@ -1,10 +1,12 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app';
 import './index.css';
 
-import { restaurants } from './fixtures';
+
 
 ReactDOM.render(
-  <App restaurants={restaurants} />,
+  <App/>,
   document.getElementById('root')
 );
+
