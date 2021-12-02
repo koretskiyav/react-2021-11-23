@@ -1,9 +1,7 @@
-import counter from '../hocs/counter';
-
-import styles from './product.module.css';
-
 import { ReactComponent as Minus } from '../icons/minus.svg';
 import { ReactComponent as Plus } from '../icons/plus.svg';
+import counter from '../hocs/counter';
+import styles from './product.module.css';
 
 function Product({ product, amount, decrement, increment }) {
   return (
