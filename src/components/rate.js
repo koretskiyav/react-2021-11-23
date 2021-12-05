@@ -7,8 +7,8 @@ export default function Rate({ value }) {
 
   return (
     <div>
-      {rateArray.map((rate) => (
-        <Star />
+      {rateArray.map((rate, i) => (
+        <Star key ={i}/>
       ))}
     </div>
   );

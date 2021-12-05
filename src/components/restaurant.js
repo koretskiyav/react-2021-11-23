@@ -1,15 +1,15 @@
 import React from 'react';
+import { useMemo } from 'react';
 
 import Menu from './menu';
 import Rate from './rate';
 import Reviews from './reviews';
 
 export default function Restaurant({ restaurant }) {
-  const averageRating = Math.floor(
-    restaurant.reviews.reduce(
-      (summury, review) => summury + review.rating / restaurant.reviews.length,
-      0
-    )
+  const averageRating = useMemo(
+      () => Math.floor(restaurant.reviews.reduce(
+      (summury, review) => summury + review.rating / restaurant.reviews.length, 0)),
+      [restaurant.reviews]
   );
 
   return (
