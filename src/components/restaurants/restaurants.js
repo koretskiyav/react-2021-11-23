@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
+import PropTypes from 'prop-types';
 
 export default function Restaurants({ restaurants }) {
   const [activeId, setActiveId] = useState(restaurants[0].id);
@@ -22,4 +23,13 @@ export default function Restaurants({ restaurants }) {
       <Restaurant restaurant={activeRestaurant} />
     </div>
   );
+}
+
+Restaurants.propTypes = {
+  restaurants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string,
+    })
+  ).isRequired,
 }
