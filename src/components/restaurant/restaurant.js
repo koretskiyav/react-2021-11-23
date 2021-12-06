@@ -1,4 +1,6 @@
 import { useMemo } from 'react';
+import PropTypes from 'prop-types';
+
 import Menu from '../menu';
 import Reviews from '../reviews';
 import Banner from '../banner';
@@ -24,6 +26,28 @@ const Restaurant = ({ restaurant }) => {
       </div>
     </div>
   );
+};
+
+Restaurant.propTypes = {
+  restaurant:
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      menu: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          name: PropTypes.string.isRequired,
+          price: PropTypes.number.isRequired,
+          ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+        })).isRequired,
+      reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          user: PropTypes.string.isRequired,
+          rating: PropTypes.number.isRequired,
+          text: PropTypes.string.isRequired,
+        })).isRequired,
+    }).isRequired
 };
 
 export default Restaurant;
