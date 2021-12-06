@@ -21,6 +21,7 @@ class Menu extends Component {
 
   render() {
     const { menu } = this.props;
+    const test = 3;
 
     if (this.state.error) {
       return <p>Меню этого ресторана сейчас недоступно :(</p>;
@@ -30,7 +31,7 @@ class Menu extends Component {
       <div className={styles.menu}>
         <div>
           {menu.map((product) => (
-            <Product key={product.id} product={product} />
+            <Product key={product.id} product={product} amount={test}/>
           ))}
         </div>
       </div>
