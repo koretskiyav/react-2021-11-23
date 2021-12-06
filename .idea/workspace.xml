@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a756bca-d804-4001-90b4-e334a35e921e" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/banner/banner.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/banner/banner.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/button/button.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/button/button.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/reviews/reviews.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/product/product.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/product/product.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/rate/rate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/rate/rate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/restaurant/restaurant.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/restaurant/restaurant.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/restaurants/restaurants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/restaurants/restaurants.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/reviews/review/review.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reviews/review/review.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/reviews/reviews.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/reviews/reviews.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/tabs/tabs.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/tabs/tabs.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +36,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/reviews" />
     <property name="nodejs_package_manager_path" value="yarn" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\LW001\Desktop\react-2021-11-23\src\components\reviews" />
       <recent name="C:\Users\LW001\Desktop\react-2021-11-23\src\components" />
       <recent name="C:\Users\LW001\Desktop\react-2021-11-23\src\icons" />
     </key>
@@ -60,7 +60,8 @@
       <workItem from="1638648331715" duration="96000" />
       <workItem from="1638648430629" duration="1834000" />
       <workItem from="1638781771360" duration="119000" />
-      <workItem from="1638781892915" duration="3113000" />
+      <workItem from="1638781892915" duration="3227000" />
+      <workItem from="1638810636960" duration="7015000" />
     </task>
     <servers />
   </component>
