@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
 //import Menu from './menu';
-import Restaurant from './Restaurant';
-import Tabs from './tabs';
+import Restaurant from '../restaurant';
+import Tabs from '../tabs';
+import PropTypes from 'prop-types';
 
 
 export default function Restaurants( {restaurants} ) {
+  console.log(restaurants)
   const [activeId, setActiveId] = useState(restaurants[0].id);
 
   const tabs = useMemo(
@@ -19,13 +21,15 @@ export default function Restaurants( {restaurants} ) {
 
   return (
     <div>
-      <Tabs tabs={tabs} onChange={setActiveId} />
+      <Tabs tabs={tabs} onChange={setActiveId} activeId = {activeId}/>
       <Restaurant restaurant = {activeRestaurant}/>
     
     </div>
   );
+};
+
+Restaurants.propTypes = {
+  restaurants: PropTypes.arrayOf(PropTypes.object).isRequired
 }
 
 
-//<Menu menu={activeRestaurant.menu} />
-//<Restaurant restaurant = {activeRestaurant}/>
