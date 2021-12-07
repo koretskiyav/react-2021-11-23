@@ -27,5 +27,5 @@ Tabs.propTypes = {
     })
   ).isRequired,
   activeId: PropTypes.string,
-  onChange: PropTypes.func,
+  onChange: PropTypes.func.isRequired,
 };
