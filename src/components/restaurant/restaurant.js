@@ -32,7 +32,9 @@ Restaurant.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
     menu: PropTypes.array,
-    reviews: PropTypes.array,
+    reviews: PropTypes.shape({
+      rating: PropTypes.number.isRequired,
+    }).isRequired,
   }).isRequired,
 };
 
