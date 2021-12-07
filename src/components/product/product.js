@@ -26,12 +26,12 @@ function Product({ product, amount, decrement, increment, fetchData }) {
             </div>
             <div className={styles.buttons}>
               <Button
-                onClick={() => decrement(product.id)}
+                onClick={decrement}
                 data-id="product-decrement"
                 icon="minus"
               />
               <Button
-                onClick={() => increment(product.id)}
+                onClick={increment}
                 data-id="product-increment"
                 icon="plus"
               />
@@ -60,14 +60,14 @@ const mapStateToProps = (state, props) => ({
   amount: state.order[props.product.id] || 0,
 });
 
-const mapDispatchToProps = {
-  decrement,
-  increment,
-};
+// const mapDispatchToProps = {
+//   decrement,
+//   increment,
+// };
 
-// const mapDispatchToProps = (dispatch) => ({
-//   decrement: () => dispatch(decrement()),
-//   increment: (a, b) => dispatch(increment(a, b)),
-// });
+const mapDispatchToProps = (dispatch, props) => ({
+  decrement: () => dispatch(decrement(props.product.id)),
+  increment: () => dispatch(increment(props.product.id)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product);
