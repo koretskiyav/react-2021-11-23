@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 import styles from './product.module.css';
 import Button from '../button';
 
-function Product({ product, amount, decrement, increment, fetchData }) {
+function Product({
+  product,
+  amount,
+  decrement,
+  increment,
+  fetchData,
+  dispatch,
+}) {
   useEffect(() => {
     fetchData?.(product.id);
   }, []); // eslint-disable-line
@@ -25,12 +32,12 @@ function Product({ product, amount, decrement, increment, fetchData }) {
             </div>
             <div className={styles.buttons}>
               <Button
-                onClick={decrement}
+                onClick={() => dispatch({ type: 'decrement' })}
                 data-id="product-decrement"
                 icon="minus"
               />
               <Button
-                onClick={increment}
+                onClick={() => dispatch({ type: 'increment' })}
                 data-id="product-increment"
                 icon="plus"
               />
