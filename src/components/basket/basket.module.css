@@ -1,0 +1,11 @@
+.basket {
+  background-color: #ccc;
+  padding: 20px 10px;
+}
+.basket-item {
+  margin-bottom: 5px;
+}
+.basket-buttons {
+  display: inline-flex;
+  margin-left: 15px;
+}
