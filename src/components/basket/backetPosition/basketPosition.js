@@ -2,12 +2,22 @@ import { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { decrement, increment } from '../../../redux/actions';
+import {
+  decrement,
+  deleteActionCreator,
+  increment,
+} from '../../../redux/actions';
 
 import Button from '../../button';
 import styles from './basketPosition.module.css';
 
-const BasketPosition = ({ product, count, increment, decrement }) => {
+const BasketPosition = ({
+  product,
+  count,
+  increment,
+  decrement,
+  deleteFunc,
+}) => {
   const { price, name } = product;
   const totalPrice = useMemo(() => price * count, [price, count]);
   return (
@@ -20,6 +30,7 @@ const BasketPosition = ({ product, count, increment, decrement }) => {
       <span>{totalPrice}$</span>
       <Button onClick={decrement} icon="minus" />
       <Button onClick={increment} icon="plus" />
+      <Button onClick={deleteFunc} icon="delete" />
     </div>
   );
 };
@@ -27,6 +38,7 @@ const BasketPosition = ({ product, count, increment, decrement }) => {
 const mapDispatchToProps = (dispatch, props) => ({
   decrement: () => dispatch(decrement(props.product.id)),
   increment: () => dispatch(increment(props.product.id)),
+  deleteFunc: () => dispatch(deleteActionCreator(props.product.id)),
 });
 
 BasketPosition.propTypes = {
@@ -38,6 +50,7 @@ BasketPosition.propTypes = {
   count: PropTypes.number.isRequired,
   increment: PropTypes.func,
   decrement: PropTypes.func,
+  deleteFunc: PropTypes.func,
 };
 
 export default connect(() => {
