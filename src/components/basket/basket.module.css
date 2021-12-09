@@ -1,0 +1,51 @@
+.basket {
+  position: fixed;
+  width: 500px;
+  top: 170px;
+  border: 1px solid var(--grey);
+  z-index: 3;
+  left: calc(50% - 250px);
+  padding: 15px;
+  height: 300px;
+  background: var(--grey);
+  overflow-y: auto;
+}
+
+.basketItem{
+  padding-bottom: 7px;
+  border-bottom: 1px solid darkgray;
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+}
+
+.deleteIcon{
+  width: 20px;
+  height: 20px;
+  fill: var(--yellow);
+  margin: 12px 5px 0 auto;
+  cursor: pointer;
+}
+
+.wrapperButtons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.closeIcon{
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 10px;
+  top: 10px;
+  fill: darkgrey;
+  cursor: pointer;
+}
