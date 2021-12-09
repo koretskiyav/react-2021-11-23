@@ -1,0 +1,24 @@
+.cart {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: #fff;
+  padding: 20px;
+  z-index: 100;
+  width: 400px;
+}
+
+.cart h2 {
+  text-align: center;
+}
+
+.cart ul {
+  padding: 0;
+}
+
+.product {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
