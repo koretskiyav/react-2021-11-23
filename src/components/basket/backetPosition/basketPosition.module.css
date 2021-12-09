@@ -1,0 +1,8 @@
+.content {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.content > * {
+    padding: 10px;
+}

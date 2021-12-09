@@ -1,0 +1,11 @@
+.basket {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 26px;
+    margin-bottom: 12px;
+    border: 1px solid var(--grey);
+    background-color: var(--white);
+    color: var(--black);
+    transition: 0.2s all;
+    min-height: 100px;
+}
