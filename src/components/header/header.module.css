@@ -13,3 +13,12 @@
   right: 20px;
   top: 0;
 }
+
+.basket{
+  position: absolute;
+  width: 29px;
+  fill: #fff;
+  top: 16px;
+  right: 55px;
+  cursor: pointer;
+}
