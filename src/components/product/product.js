@@ -50,7 +50,7 @@ Product.propTypes = {
     ingredients: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   }).isRequired,
   fetchData: PropTypes.func,
-  // from HOC counter
+  // from connect
   amount: PropTypes.number,
   decrement: PropTypes.func,
   increment: PropTypes.func,
