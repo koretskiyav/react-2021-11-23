@@ -4,8 +4,7 @@ import styles from './basket.module.css';
 import itemStyles from './basket-item/basket-item.module.css';
 import BasketItem from './basket-item';
 import Button from '../button';
-
-import {totalSelector, orderProductsSelector} from '../../redux/selectors'
+import { orderProductsSelector, totalSelector } from '../../redux/selectors';
 
 function Basket({ title = 'Basket', total, orderProducts }) {
   if (!total) {
@@ -42,8 +41,6 @@ function Basket({ title = 'Basket', total, orderProducts }) {
     </div>
   );
 }
-
-
 
 export default connect((state) => {
   return {
