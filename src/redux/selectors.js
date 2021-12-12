@@ -31,6 +31,13 @@ export const reviewSelector = createSelector(
   [reviewsSelector, selectReviewId],
   (reviews, reviewId) => reviews[reviewId]
 );
+export const averageRatingSelector = createSelector(
+  [reviewsSelector, (state, reviewIds) => reviewIds],
+  (reviews, reviewIds) => {
+    const total = reviewIds.reduce((acc, id) => acc + reviews[id].rating, 0);
+    return Math.round(total / reviewIds.length);
+  }
+);
 
 const usersSelector = (state) => state.users;
 const userIdSelector = (state, userId) => userId;
