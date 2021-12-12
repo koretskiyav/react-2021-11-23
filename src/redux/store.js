@@ -3,8 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from './middleware/logger';
 
 import reducer from './reducer';
+import idGenerator from './middleware/idGenerator';
 
 export default createStore(
   reducer,
-  composeWithDevTools(applyMiddleware(logger))
+  composeWithDevTools(applyMiddleware(idGenerator, logger))
 );
