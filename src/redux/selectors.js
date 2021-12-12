@@ -22,3 +22,36 @@ export const totalSelector = createSelector(
   (orderProducts) =>
     orderProducts.reduce((acc, { subtotal }) => acc + subtotal, 0)
 );
+
+const reviewsSelector = (state) => state.reviews;
+
+const selectReviewId = (state, reviewId) => reviewId;
+
+export const reviewSelector = createSelector(
+  [reviewsSelector, selectReviewId],
+  (reviews, reviewId) => reviews[reviewId]
+);
+
+const usersSelector = (state) => state.users;
+const userIdSelector = (state, userId) => userId;
+
+export const userSelector = createSelector(
+  [usersSelector, userIdSelector],
+  (users, userId) => users[userId]
+);
+
+const restaurantsSelector = (state) => state.restaurants;
+export const restaurantsArraySelector = createSelector(
+  [restaurantsSelector],
+  (restaurants) => Object.values(restaurants)
+);
+
+export const productAmountSelector = createSelector(
+  [orderSelector, (_, productId) => productId],
+  (order, productId) => order[productId] || 0
+);
+
+export const productSelector = createSelector(
+  [productsSelector, (_, productId) => productId],
+  (products, productId) => products[productId]
+);

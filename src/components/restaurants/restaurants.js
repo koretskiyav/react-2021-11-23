@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
 
+import { restaurantsArraySelector } from '../../redux/selectors';
+
 function Restaurants({ restaurants }) {
   const [activeId, setActiveId] = useState(restaurants[0].id);
 
@@ -35,7 +37,7 @@ Restaurants.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  restaurants: Object.values(state.restaurants),
+  restaurants: restaurantsArraySelector(state),
 });
 
 export default connect(mapStateToProps)(Restaurants);
