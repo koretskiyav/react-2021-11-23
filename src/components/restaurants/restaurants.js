@@ -35,7 +35,7 @@ Restaurants.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  restaurants: state.restaurants,
+  restaurants: Object.values(state.restaurants),
 });
 
 export default connect(mapStateToProps)(Restaurants);
