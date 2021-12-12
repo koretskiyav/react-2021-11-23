@@ -15,11 +15,7 @@ const Reviews = ({ restaurantId, reviews }) => {
 };
 
 Reviews.propTypes = {
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  reviews: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export default Reviews;
