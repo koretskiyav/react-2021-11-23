@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-
-import styles from './product.module.css';
-import Button from '../button';
+import { amountSelector, productSelector } from '../../redux/selectors';
 import { decrement, increment } from '../../redux/actions';
+
+import Button from '../button';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import styles from './product.module.css';
+import { useEffect } from 'react';
 
 function Product({ product, amount, decrement, increment, fetchData }) {
   useEffect(() => {
@@ -57,8 +58,8 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  amount: state.order[props.id] || 0,
-  product: state.products[props.id],
+  amount: amountSelector(state, props.id),
+  product: productSelector(state, props.id),
 });
 
 // const mapDispatchToProps = {
