@@ -5,16 +5,13 @@ import Reviews from '../reviews';
 import Banner from '../banner';
 import Rate from '../rate';
 import Tabs from '../tabs';
+import { connect } from 'react-redux';
+import { averageRatingSelector, restaurantSelector } from '../../redux/selectors';
 
-const Restaurant = ({ restaurant }) => {
-  const { id, name, menu, reviews } = restaurant;
+const Restaurant = ({ id, restaurant, averageRating }) => {
+  // const { id, name, menu, reviews } = restaurant;
 
   const [activeTab, setActiveTab] = useState('menu');
-
-  const averageRating = useMemo(() => {
-    const total = reviews.reduce((acc, { rating }) => acc + rating, 0);
-    return Math.round(total / reviews.length);
-  }, [reviews]);
 
   const tabs = [
     { id: 'menu', label: 'Menu' },
@@ -23,12 +20,12 @@ const Restaurant = ({ restaurant }) => {
 
   return (
     <div>
-      <Banner heading={name}>
+      <Banner heading={restaurant.name}>
         <Rate value={averageRating} />
       </Banner>
       <Tabs tabs={tabs} activeId={activeTab} onChange={setActiveTab} />
-      {activeTab === 'menu' && <Menu menu={menu} key={id} />}
-      {activeTab === 'reviews' && <Reviews reviews={reviews} />}
+      {activeTab === 'menu' && <Menu menu={restaurant.menu} key={id} />}
+      {activeTab === 'reviews' && <Reviews reviews={restaurant.reviews} />}
     </div>
   );
 };
@@ -38,12 +35,17 @@ Restaurant.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
     menu: PropTypes.array,
-    reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        rating: PropTypes.number.isRequired,
-      }).isRequired
-    ).isRequired,
+    // reviews: PropTypes.arrayOf(
+    //   PropTypes.shape({
+    //     rating: PropTypes.number.isRequired,
+    //   }).isRequired
+    // ).isRequired,
   }).isRequired,
 };
 
-export default Restaurant;
+const mapStateToProps = (state, props) => ({
+  restaurant: restaurantSelector(state, props.id),
+  averageRating: averageRatingSelector(state, restaurantSelector(state, props.id).reviews)
+});
+
+export default connect(mapStateToProps)(Restaurant)
