@@ -4,7 +4,26 @@ export const productsSelector = (state) => state.products;
 export const orderSelector = (state) => state.order;
 export const restaurantsSelector = (state) => state.restaurants;
 export const reviewsSelector = (state) => state.reviews;
-export const userSelector = (state) => state.users;
+export const usersSelector = (state) => state.users;
+
+export const restaurantProductsSelector = createSelector(
+  [productsSelector, restaurantsSelector],
+  (products, restaurants) => {
+    console.log('PRODUCTS: ', products);
+    console.log('RESTAURANTS: ', restaurants);
+    // {console.log(restaurants[el].menu); }
+    Object.keys(restaurants).map((el) =>
+      restaurants[el].menu.map((el) => console.log(el))
+    );
+  }
+);
+
+export const reviewSelector = createSelector(
+  [reviewsSelector, usersSelector],
+  (reviews, users) => {
+
+  }
+);
 
 export const orderProductsSelector = createSelector(
   [productsSelector, orderSelector],

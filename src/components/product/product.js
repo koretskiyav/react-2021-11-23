@@ -10,6 +10,7 @@ function Product({ product, amount, decrement, increment, fetchData }) {
   useEffect(() => {
     fetchData?.(product.id);
   }, []); // eslint-disable-line
+  console.log("Product: ",product);
 
   return (
     <div className={styles.product} data-id="product">
@@ -60,11 +61,6 @@ const mapStateToProps = (state, props) => ({
   amount: state.order[props.id] || 0,
   product: state.products[props.id],
 });
-
-// const mapDispatchToProps = {
-//   decrement,
-//   increment,
-// };
 
 const mapDispatchToProps = (dispatch, props) => ({
   decrement: () => dispatch(decrement(props.id)),

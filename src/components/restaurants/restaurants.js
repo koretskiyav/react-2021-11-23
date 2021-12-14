@@ -11,7 +11,7 @@ function Restaurants({ restaurants }) {
   );
   const tabs = useMemo(
     () =>
-      Object.keys(restaurants).map((id, name) => ({
+      Object.keys(restaurants).map((id) => ({
         id,
         label: restaurants[id].name,
       })),
