@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
 
+import { restaurantsSelector } from '../../redux/selectors';
+
 function Restaurants({ restaurants }) {
   const [activeId, setActiveId] = useState(Object.keys(restaurants)[0]);
   const tabs = useMemo(
@@ -31,8 +33,9 @@ Restaurants.propTypes = {
     }).isRequired
 };
 
-const mapStateToProps = (state) => ({
-  restaurants: state.restaurants,
-});
+export default connect((state, props) => {
+  return {
+    restaurants: restaurantsSelector(state)
+  };
+})(Restaurants);
 
-export default connect(mapStateToProps)(Restaurants);

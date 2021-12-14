@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import Rate from '../../rate';
 import styles from './review.module.css';
 
+import { usersSelector, reviewsSelector } from '../../../redux/selectors';
+
 const Review = ({ name, text, rating, users }) => {
   return(
     <div className={styles.review} data-id="review">
@@ -35,10 +37,10 @@ Review.defaultProps = {
 
 export default connect((state, props) => {
   return {
-    name: state.users[state.reviews[props.id].userId].name,
-    reviews: state.reviews,
-    text: state.reviews[props.id].text,
-    rating: state.reviews[props.id].rating,
+    name: usersSelector(state)[reviewsSelector(state)[props.id].userId].name,
+    reviews: reviewsSelector(state),
+    text: reviewsSelector(state)[props.id].text,
+    rating: reviewsSelector(state)[props.id].rating,
   };
 })(Review);
 

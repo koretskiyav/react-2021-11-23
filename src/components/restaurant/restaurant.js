@@ -7,6 +7,8 @@ import Banner from '../banner';
 import Rate from '../rate';
 import Tabs from '../tabs';
 
+import { reviewsSelector } from '../../redux/selectors';
+
 const Restaurant = ({ restaurant, allReviews, currentReviews }) => {
   const { id, name, menu, reviews } = restaurant;
   const [activeTab, setActiveTab] = useState('menu');
@@ -41,10 +43,9 @@ Restaurant.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state, props) => ({
-  allReviews: state.reviews,
-  currentReviews: props.restaurant.reviews.map(item => state.reviews[item]),
-  reviews: state.reviews
-});
-
-export default connect(mapStateToProps)(Restaurant);
+export default connect((state, props) => {
+  return {
+    allReviews: reviewsSelector(state),
+    currentReviews: props.restaurant.reviews.map(item => reviewsSelector(state)[item])
+  };
+})(Restaurant);
