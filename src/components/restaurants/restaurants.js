@@ -21,8 +21,8 @@ function Restaurants({
   changeRestaurant,
 }) {
   useEffect(() => {
-    loadRestaurants();
-  }, []); // eslint-disable-line
+    if (!loading && !loaded) loadRestaurants();
+  }, [loading, loaded, loadRestaurants]);
 
   const tabs = useMemo(
     () => restaurants.map(({ id, name }) => ({ id, label: name })),
