@@ -8,13 +8,14 @@ import Tabs from '../tabs';
 
 const Restaurant = ({ restaurant }) => {
   const { id, name, menu, reviews } = restaurant;
+  console.log('Restaurant: ', restaurant, reviews);
 
   const [activeTab, setActiveTab] = useState('menu');
 
-  const averageRating = useMemo(() => {
-    const total = reviews.reduce((acc, { rating }) => acc + rating, 0);
-    return Math.round(total / reviews.length);
-  }, [reviews]);
+  // const averageRating = useMemo(() => {
+  //   const total = reviews.reduce((acc, { rating }) => acc + rating, 0);
+  //   return Math.round(total / reviews.length);
+  // }, [reviews]);
 
   const tabs = [
     { id: 'menu', label: 'Menu' },
@@ -24,11 +25,11 @@ const Restaurant = ({ restaurant }) => {
   return (
     <div>
       <Banner heading={name}>
-        <Rate value={averageRating} />
+        <Rate value={1} />
       </Banner>
       <Tabs tabs={tabs} activeId={activeTab} onChange={setActiveTab} />
       {activeTab === 'menu' && <Menu menu={menu} key={id} />}
-      {activeTab === 'reviews' && <Reviews reviews={reviews} />}
+      {activeTab === 'reviews' && <Reviews reviews={reviews} key={id} />}
     </div>
   );
 };
@@ -38,11 +39,7 @@ Restaurant.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string,
     menu: PropTypes.array,
-    reviews: PropTypes.arrayOf(
-      PropTypes.shape({
-        rating: PropTypes.number.isRequired,
-      }).isRequired
-    ).isRequired,
+    reviews: PropTypes.array.isRequired,
   }).isRequired,
 };
 
