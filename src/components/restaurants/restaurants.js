@@ -7,12 +7,16 @@ import Loader from '../loader';
 import {
   restaurantsListSelector,
   activeRestIdSelector,
+  restaurantsLoadingSelector,
+  restaurantsLoadedSelector,
 } from '../../redux/selectors';
 import { loadRestaurants, changeRestaurant } from '../../redux/actions';
 
 function Restaurants({
   restaurants,
   activeId,
+  loading,
+  loaded,
   loadRestaurants,
   changeRestaurant,
 }) {
@@ -25,7 +29,8 @@ function Restaurants({
     [restaurants]
   );
 
-  if (restaurants.length === 0) return <Loader />;
+  if (loading) return <Loader />;
+  if (!loaded) return 'No data :(';
 
   return (
     <div>
@@ -47,6 +52,8 @@ Restaurants.propTypes = {
 const mapStateToProps = (state) => ({
   restaurants: restaurantsListSelector(state),
   activeId: activeRestIdSelector(state),
+  loading: restaurantsLoadingSelector(state),
+  loaded: restaurantsLoadedSelector(state),
 });
 
 const mapDispatchToProps = {

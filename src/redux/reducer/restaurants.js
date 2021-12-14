@@ -1,20 +1,45 @@
 import produce from 'immer';
-import { ADD_REVIEW, CHANGE_RESTAURANT, LOAD_RESTAURANTS } from '../constants';
+import {
+  ADD_REVIEW,
+  CHANGE_RESTAURANT,
+  FAILURE,
+  LOAD_RESTAURANTS,
+  REQUEST,
+  SUCCESS,
+} from '../constants';
 import { arrToMap } from '../utils';
 
 const initialState = {
   activeId: null,
   entities: {},
+  loading: false,
+  loaded: false,
+  error: null,
 };
 
 export default (state = initialState, action) => {
-  const { type, restId, reviewId, activeId, data } = action;
+  const { type, restId, reviewId, activeId, data, error } = action;
 
   switch (type) {
     case CHANGE_RESTAURANT:
       return { ...state, activeId };
-    case LOAD_RESTAURANTS:
-      return { ...state, activeId: data[0].id, entities: arrToMap(data) };
+    case LOAD_RESTAURANTS + REQUEST:
+      return { ...state, loading: true, error: null };
+    case LOAD_RESTAURANTS + SUCCESS:
+      return {
+        ...state,
+        activeId: data[0].id,
+        entities: arrToMap(data),
+        loading: false,
+        loaded: true,
+      };
+    case LOAD_RESTAURANTS + FAILURE:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error,
+      };
     case ADD_REVIEW:
       return produce(state, (draft) => {
         draft.entities[restId].reviews.push(reviewId);
