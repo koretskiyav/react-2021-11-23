@@ -12,7 +12,8 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.2",
     "redux-devtools-extension": "^2.13.9",
-    "reselect": "^4.1.5"
+    "reselect": "^4.1.5",
+    "uuidv4": "^6.2.12"
   },
   "scripts": {
     "start": "react-scripts start",
