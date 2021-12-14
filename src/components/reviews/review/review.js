@@ -1,19 +1,19 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { reviewsSelector, usersSelector } from '../../../redux/selectors';
 
 import Rate from '../../rate';
 import styles from './review.module.css';
 
-const Review = ({ review }) => {
-  const { id, userId, text, rating } = review;
-  console.log('Review: ', review, userId);
+const Review = ({ review, user }) => {
+  const { userId, text, rating } = review;
+  console.log('Review: ', review);
   return (
     <div className={styles.review} data-id="review">
       <div className={styles.content}>
         <div>
           <h4 className={styles.name} data-id="review-user">
-            {userId}
+            {user.name} {userId}
           </h4>
           <p className={styles.comment} data-id="review-text">
             {text}
@@ -34,8 +34,9 @@ Review.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  review: state.reviews[props.id],
-  user: state.users[props.userId]
+  review: reviewsSelector(state)[props.id],
+  // user: usersSelector(state)[props.userId], ///???
+  user: usersSelector(state)['dfb982e9-b432-4b7d-aec6-7f6ff2e6af54'],
 });
 
 export default connect(mapStateToProps)(Review);
