@@ -9,6 +9,7 @@ import {
   SUCCESS,
   FAILURE,
   LOAD_REVIEWS,
+  LOAD_PRODUCTS,
 } from './constants';
 
 export const increment = (id) => ({ type: INCREMENT, id });
@@ -44,3 +45,11 @@ export const loadReviews = (restId) => async (dispatch) => {
     dispatch({ type: LOAD_REVIEWS + FAILURE, restId, error });
   }
 };
+
+export const loadProducts = (id) => ({
+  type: LOAD_PRODUCTS,
+  CallAPI: '/api/products',
+  queryParams: {
+    id,
+  },
+});
