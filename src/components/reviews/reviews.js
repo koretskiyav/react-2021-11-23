@@ -5,12 +5,40 @@ import Review from './review';
 import ReviewForm from './review-form';
 import styles from './reviews.module.css';
 
-import { loadReviews } from '../../redux/actions';
+import { loadUserReviews } from '../../redux/actions';
+import {
+  reviewsLoadedSelector,
+  reviewsLoadingSelector,
+  usersLoadedSelector,
+  usersLoadingSelector,
+} from '../../redux/selectors';
+import Loader from '../loader';
 
-const Reviews = ({ reviews, restId, loadReviews }) => {
+const Reviews = ({
+  reviews,
+  restId,
+  loadUserReviews,
+  reviewsLoading,
+  reviewsLoaded,
+  usersLoading,
+  usersLoaded,
+}) => {
   useEffect(() => {
-    loadReviews(restId);
-  }, [restId, loadReviews]);
+    if (!reviewsLoading && !reviewsLoaded) {
+      const fetchUsers = !usersLoading && !usersLoaded;
+      loadUserReviews({ fetchUsers, restId });
+    }
+  }, [
+    restId,
+    loadUserReviews,
+    reviewsLoading,
+    reviewsLoaded,
+    usersLoading,
+    usersLoaded,
+  ]);
+
+  if (usersLoading || reviewsLoading) return <Loader />;
+  if (!reviewsLoaded) return 'Сорян, отзывы не подгрузили';
 
   return (
     <div className={styles.reviews}>
@@ -27,8 +55,15 @@ Reviews.propTypes = {
   reviews: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
+const mapStateToProps = (state, props) => ({
+  reviewsLoading: reviewsLoadingSelector(state, props),
+  reviewsLoaded: reviewsLoadedSelector(state, props),
+  usersLoading: usersLoadingSelector(state),
+  usersLoaded: usersLoadedSelector(state),
+});
+
 const mapDispatchToProps = {
-  loadReviews,
+  loadUserReviews,
 };
 
-export default connect(null, mapDispatchToProps)(Reviews);
+export default connect(mapStateToProps, mapDispatchToProps)(Reviews);
