@@ -17,8 +17,8 @@ import styles from './menu.module.css';
 class Menu extends Component {
   static propTypes = {
     menu: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
-    loading: PropTypes.bool.isRequired,
-    loaded: PropTypes.bool.isRequired,
+    loading: PropTypes.bool,
+    loaded: PropTypes.bool,
     restId: PropTypes.string,
     loadProducts: PropTypes.func,
   };
