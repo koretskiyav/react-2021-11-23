@@ -1,26 +1,41 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
+import Loader from '../loader';
+import {
+  restaurantsListSelector,
+  activeRestIdSelector,
+  restaurantsLoadingSelector,
+  restaurantsLoadedSelector,
+} from '../../redux/selectors';
+import { loadRestaurants, changeRestaurant } from '../../redux/actions';
 
-function Restaurants({ restaurants }) {
-  const [activeId, setActiveId] = useState(restaurants[0].id);
+function Restaurants({
+  restaurants,
+  activeId,
+  loading,
+  loaded,
+  loadRestaurants,
+  changeRestaurant,
+}) {
+  useEffect(() => {
+    if (!loading && !loaded) loadRestaurants();
+  }, [loading, loaded, loadRestaurants]);
 
   const tabs = useMemo(
     () => restaurants.map(({ id, name }) => ({ id, label: name })),
     [restaurants]
   );
 
-  const activeRestaurant = useMemo(
-    () => restaurants.find((restaurant) => restaurant.id === activeId),
-    [activeId, restaurants]
-  );
+  if (loading) return <Loader />;
+  if (!loaded) return 'No data :(';
 
   return (
     <div>
-      <Tabs tabs={tabs} onChange={setActiveId} activeId={activeId} />
-      <Restaurant restaurant={activeRestaurant} />
+      <Tabs tabs={tabs} onChange={changeRestaurant} activeId={activeId} />
+      <Restaurant id={activeId} />
     </div>
   );
 }
@@ -35,7 +50,15 @@ Restaurants.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  restaurants: state.restaurants,
+  restaurants: restaurantsListSelector(state),
+  activeId: activeRestIdSelector(state),
+  loading: restaurantsLoadingSelector(state),
+  loaded: restaurantsLoadedSelector(state),
 });
 
-export default connect(mapStateToProps)(Restaurants);
+const mapDispatchToProps = {
+  loadRestaurants,
+  changeRestaurant,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Restaurants);

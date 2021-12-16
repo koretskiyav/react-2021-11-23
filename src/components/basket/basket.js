@@ -42,9 +42,12 @@ function Basket({ title = 'Basket', total, orderProducts }) {
   );
 }
 
-export default connect((state) => {
+const mapStateToProps = (state) => {
   return {
     total: totalSelector(state),
     orderProducts: orderProductsSelector(state),
   };
-})(Basket);
+
+};
+
+export default connect(mapStateToProps)(Basket);
