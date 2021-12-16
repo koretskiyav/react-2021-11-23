@@ -11,7 +11,7 @@ import styles from './review-form.module.css';
 
 const INITIAL_VALUES = { name: '', text: '', rating: 3 };
 
-const ReviewForm = ({ onSubmit }) => {
+const ReviewForm = ({ restId, onSubmit }) => {
   const { values, handlers, reset } = useForm(INITIAL_VALUES);
 
   const handleSubmit = (ev) => {
@@ -56,6 +56,7 @@ const ReviewForm = ({ onSubmit }) => {
 
 ReviewForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  restId: PropTypes.string.isRequired,
 };
 
 const mapDispatchToProps = (dispatch, props) => ({
