@@ -8,7 +8,7 @@ import styles from './menu.module.css';
 
 class Menu extends Component {
   static propTypes = {
-    menu: PropTypes.array.isRequired,
+    menu: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
   state = { error: null };

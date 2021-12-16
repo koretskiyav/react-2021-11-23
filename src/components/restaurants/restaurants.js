@@ -18,15 +18,11 @@ function Restaurants({ restaurants }) {
     [restaurants]
   );
 
-  const activeRestaurant = useMemo(
-    () => restaurants[activeId],
-    [activeId, restaurants]
-  );
-
   return (
     <div>
       <Tabs tabs={tabs} onChange={setActiveId} activeId={activeId} />
-      <Restaurant restaurant={activeRestaurant} />
+      {/* тут просто передали ID ресторана, там приняли через селекторы из props  нашли нужный ресторан и */}
+      <Restaurant id={activeId} />
     </div>
   );
 }

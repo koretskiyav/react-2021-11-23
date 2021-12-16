@@ -19,8 +19,39 @@ export const orderProductsSelector = createSelector(
       }))
 );
 
+export const amountSelector = (state, { id }) => orderSelector(state)[id] || 0;
+
+export const productSelector = (state, { id }) => productsSelector(state)[id];
+
+export const reviewSelector = (state, { id }) => reviewsSelector(state)[id];
+
+export const userSelector = (state, { id }) => usersSelector(state)[id];
+
+export const restaurantSelector = (state, { id }) =>
+  restaurantsSelector(state)[id];
+
 export const totalSelector = createSelector(
   [orderProductsSelector],
   (orderProducts) =>
     orderProducts.reduce((acc, { subtotal }) => acc + subtotal, 0)
+);
+
+export const reviewWitUserSelector = createSelector(
+  reviewSelector,
+  usersSelector,
+  (review, users) => ({
+    ...review,
+    user: users[review.userId]?.name,
+  })
+);
+
+export const averageRatingSelector = createSelector(
+  reviewsSelector,
+  restaurantSelector,
+  (reviews, restaurant) => {
+    const ratings = restaurant.reviews.map((id) => reviews[id].rating);
+    return Math.round(
+      ratings.reduce((acc, rating) => acc + rating) / ratings.length
+    );
+  }
 );
