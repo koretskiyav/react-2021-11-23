@@ -6,6 +6,10 @@
   fill: var(--yellow);
 }
 
+.unknown {
+  fill: transparent;
+}
+
 .clickable {
   cursor: pointer;
 }
