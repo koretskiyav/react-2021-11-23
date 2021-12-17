@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Switch, Route } from 'react-router-dom';
+import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Loader from '../loader';
@@ -38,9 +38,7 @@ function Restaurants({ restaurants, loading, loaded, loadRestaurants }) {
         <Route path="/restaurants/:restId">
           {({ match }) => <Restaurant id={match.params.restId} />}
         </Route>
-        <Route>
-          <p>select restaurant</p>
-        </Route>
+        <Redirect to={`/restaurants/${restaurants[0].id}`} />
       </Switch>
     </div>
   );
