@@ -1,19 +1,20 @@
 import PropTypes from 'prop-types';
-import cn from 'classnames';
+import { NavLink } from 'react-router-dom';
 
 import styles from './tabs.module.css';
 
-function Tabs({ tabs, activeId, onChange }) {
+function Tabs({ tabs, resource }) {
   return (
     <div className={styles.tabs}>
       {tabs.map(({ id, label }) => (
-        <span
+        <NavLink
           key={id}
-          className={cn(styles.tab, { [styles.active]: id === activeId })}
-          onClick={() => onChange(id)}
+          to={`${resource}/${id}`}
+          className={styles.tab}
+          activeClassName={styles.active}
         >
           {label}
-        </span>
+        </NavLink>
       ))}
     </div>
   );
@@ -26,8 +27,7 @@ Tabs.propTypes = {
       label: PropTypes.string,
     }).isRequired
   ).isRequired,
-  activeId: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  resource: PropTypes.string.isRequired,
 };
 
 export default Tabs;

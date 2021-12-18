@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
+import Tabs from '../tabs';
 import Loader from '../loader';
 import {
   restaurantsListSelector,
@@ -11,29 +12,27 @@ import {
 } from '../../redux/selectors';
 import { loadRestaurants } from '../../redux/actions';
 
-import styles from './restaurants.module.css';
 function Restaurants({ restaurants, loading, loaded, loadRestaurants }) {
   useEffect(() => {
     if (!loading && !loaded) loadRestaurants();
   }, [loading, loaded, loadRestaurants]);
+  const match = useRouteMatch();
+
+  const tabs = useMemo(
+    () =>
+      restaurants.reduce(
+        (tabs, rest) => [...tabs, { id: rest.id, label: rest.name }],
+        []
+      ),
+    [restaurants]
+  );
 
   if (loading) return <Loader />;
   if (!loaded) return 'No data :(';
 
   return (
     <div>
-      <div className={styles.tabs}>
-        {restaurants.map(({ id, name }) => (
-          <NavLink
-            key={id}
-            to={`/restaurants/${id}`}
-            className={styles.tab}
-            activeClassName={styles.active}
-          >
-            {name}
-          </NavLink>
-        ))}
-      </div>
+      <Tabs tabs={tabs} resource={match.path} />
       <Switch>
         <Route path="/restaurants/:restId">
           {({ match }) => <Restaurant id={match.params.restId} />}
