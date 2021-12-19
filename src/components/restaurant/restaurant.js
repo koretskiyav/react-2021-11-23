@@ -34,6 +34,7 @@ const Restaurant = ({ restaurant, averageRating }) => {
             to={`/restaurants/${restaurant.id}/${id}`}
             className={styles.tab}
             activeClassName={styles.active}
+            onClick={() => setActiveTab(id)}
           >
             {label}
           </NavLink>

@@ -38,6 +38,9 @@ function Restaurants({ restaurants, loading, loaded, loadRestaurants }) {
           {({ match }) => <Restaurant id={match.params.restId} />}
         </Route>
         <Redirect to={`/restaurants/${restaurants[0].id}`} />
+
+        <Route path="/"></Route>
+        <Redirect to={`/restaurants/${restaurants[0].id}`} />
       </Switch>
     </div>
   );
