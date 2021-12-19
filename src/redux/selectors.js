@@ -46,6 +46,14 @@ export const orderProductsSelector = createSelector(
       }))
 );
 
+export const restaurantProductSelector = (state, { product }) => {
+  const restaurants = Object.values(restaurantsSelector(state)).filter(
+    (restaurant, i) => restaurant.menu.includes(product.id)
+  );
+  const id = restaurants[0].id;
+  return restaurantsSelector(state)[id];
+};
+
 export const totalSelector = createSelector(
   [orderProductsSelector],
   (orderProducts) =>
