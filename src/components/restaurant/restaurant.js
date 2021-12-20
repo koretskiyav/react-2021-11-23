@@ -1,34 +1,58 @@
-import { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Menu from '../menu';
 import Reviews from '../reviews';
 import Banner from '../banner';
 import Rate from '../rate';
-import Tabs from '../tabs';
+import {
+  NavLink,
+  Switch,
+  Route,
+  Redirect,
+  useRouteMatch,
+} from 'react-router-dom';
 import {
   averageRatingSelector,
   restaurantSelector,
 } from '../../redux/selectors';
+import styles from './restaurant.module.css';
 
 const Restaurant = ({ restaurant, averageRating }) => {
   const { id, name, menu, reviews } = restaurant;
-
-  const [activeTab, setActiveTab] = useState('menu');
-
-  const tabs = [
-    { id: 'menu', label: 'Menu' },
-    { id: 'reviews', label: 'Reviews' },
-  ];
+  const { path, url } = useRouteMatch();
 
   return (
     <div>
       <Banner heading={name}>
         <Rate value={averageRating} />
       </Banner>
-      <Tabs tabs={tabs} activeId={activeTab} onChange={setActiveTab} />
-      {activeTab === 'menu' && <Menu menu={menu} key={id} restId={id} />}
-      {activeTab === 'reviews' && <Reviews reviews={reviews} restId={id} />}
+
+      <div className={styles.tabs}>
+        <NavLink
+          to={`${url}/menu`}
+          className={styles.tab}
+          activeClassName={styles.active}
+        >
+          Menu
+        </NavLink>
+        <NavLink
+          to={`${url}/reviews`}
+          className={styles.tab}
+          activeClassName={styles.active}
+        >
+          Reviews
+        </NavLink>
+      </div>
+
+      <Switch>
+        <Route path={`${path}/menu`}>
+          <Menu menu={menu} restId={id} />
+        </Route>
+        <Route path={`${path}/reviews`}>
+          <Reviews reviews={reviews} restId={id} />
+        </Route>
+        <Redirect to={`${path}/menu`} />
+      </Switch>
     </div>
   );
 };
