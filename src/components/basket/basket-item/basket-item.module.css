@@ -59,6 +59,11 @@
 .name > a {
   display: inline-block;
   color: var(--black);
+  text-decoration: underline;
+}
+
+.name > a:hover {
+  color: var(--grey-dark);
 }
 
 .info {
