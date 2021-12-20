@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import logger from './middleware/logger';
 
 const restaurantsSelector = (state) => state.restaurants.entities;
 const productsSelector = (state) => state.products.entities;
@@ -71,3 +72,20 @@ export const averageRatingSelector = createSelector(
     );
   }
 );
+
+export const productIdSelector = (state, props) => {
+  return props.product.id;
+}
+
+export const activeRest = createSelector(
+  restaurantsSelector,
+  productIdSelector,
+  (restaurant, test) => {
+    return Object.entries(restaurant)
+      .map(item => ({ id: item[0], mass: item[1].menu.filter(item => item === test) }))
+      .filter(item => item.mass.length > 0)
+      .map(item => {
+        return item.id;
+      })
+  }
+)
