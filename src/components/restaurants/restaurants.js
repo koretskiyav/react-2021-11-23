@@ -39,7 +39,7 @@ function Restaurants({ restaurants, loading, loaded, loadRestaurants }) {
         </Route>
         <Redirect to={`/restaurants/${restaurants[0].id}`} />
 
-        <Route path="/"></Route>
+        <Route path="/" />
         <Redirect to={`/restaurants/${restaurants[0].id}`} />
       </Switch>
     </div>

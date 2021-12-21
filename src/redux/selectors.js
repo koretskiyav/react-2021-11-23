@@ -71,3 +71,14 @@ export const averageRatingSelector = createSelector(
     );
   }
 );
+
+export const RestaurantOfProductSelector = createSelector(
+  (productSelector, restaurantsSelector),
+  (product, restaurants) => {
+    //почему в этом месте в product приходят все рестораны
+    //а restaurants вообще undefined
+    //не понимаю, почему так происходит,
+    //если данные в props те, что помогди бы найти ресторан для продукта
+    console.log(product, restaurants);
+  }
+);

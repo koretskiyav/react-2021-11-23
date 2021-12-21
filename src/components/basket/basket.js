@@ -21,6 +21,7 @@ function Basket({ title = 'Basket', total, orderProducts }) {
       <h4 className={styles.title}>{title}</h4>
       {orderProducts.map(({ product, amount, subtotal }) => (
         <BasketItem
+          id={product.id}
           product={product}
           amount={amount}
           key={product.id}
@@ -50,7 +51,6 @@ const mapStateToProps = (state) => {
     total: totalSelector(state),
     orderProducts: orderProductsSelector(state),
   };
-
 };
 
 export default connect(mapStateToProps)(Basket);
