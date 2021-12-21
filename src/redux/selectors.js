@@ -33,9 +33,23 @@ export const restaurantSelector = (state, { id }) =>
 export const productSelector = (state, { id }) => productsSelector(state)[id];
 export const reviewSelector = (state, { id }) => reviewsSelector(state)[id];
 export const amountSelector = (state, { id }) => orderSelector(state)[id] || 0;
+
+const restaurantsIdsByProductsSelector = createSelector(
+  restaurantsListSelector,
+  (restaurants) =>
+    restaurants
+      .flatMap((rest) =>
+        rest.menu.map((productId) => ({ productId, restId: rest.id }))
+      )
+      .reduce(
+        (acc, { productId, restId }) => ({ ...acc, [productId]: restId }),
+        {}
+      )
+);
+
 export const orderProductsSelector = createSelector(
-  [productsSelector, orderSelector],
-  (products, order) =>
+  [productsSelector, orderSelector, restaurantsIdsByProductsSelector],
+  (products, order, restaurantsIds) =>
     Object.keys(order)
       .filter((productId) => order[productId] > 0)
       .map((productId) => products[productId])
@@ -43,6 +57,7 @@ export const orderProductsSelector = createSelector(
         product,
         amount: order[product.id],
         subtotal: order[product.id] * product.price,
+        restId: restaurantsIds[product.id],
       }))
 );
 
