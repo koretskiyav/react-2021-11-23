@@ -1,24 +1,28 @@
-import { replace } from 'connected-react-router';
+import { push, replace } from 'connected-react-router';
 import {
-  DECREMENT,
-  INCREMENT,
-  REMOVE,
   ADD_REVIEW,
-  LOAD_RESTAURANTS,
   CHANGE_RESTAURANT,
+  CREATE_ORDER,
+  DECREMENT,
+  FAILURE,
+  INCREMENT,
   LOAD_PRODUCTS,
+  LOAD_RESTAURANTS,
   LOAD_REVIEWS,
   LOAD_USERS,
+  REMOVE,
   REQUEST,
   SUCCESS,
-  FAILURE,
 } from './constants';
 
 import {
-  usersLoadingSelector,
-  usersLoadedSelector,
-  reviewsLoadingSelector,
+  createOrderCartSelector,
+  isCheckoutPageSelector,
+  isSendingToServerSelector,
   reviewsLoadedSelector,
+  reviewsLoadingSelector,
+  usersLoadedSelector,
+  usersLoadingSelector,
 } from './selectors';
 
 export const increment = (id) => ({ type: INCREMENT, id });
@@ -76,4 +80,37 @@ export const loadUsers = () => async (dispatch, getState) => {
   if (loading || loaded) return;
 
   dispatch(_loadUsers());
+};
+
+export const checkout = () => async (dispatch, getState) => {
+  const state = getState();
+  if (!isCheckoutPageSelector(state)) {
+    dispatch(push('/checkout'));
+    return;
+  }
+
+  const sendingToServer = isSendingToServerSelector(state);
+  if (sendingToServer) {
+    return;
+  }
+  dispatch({ type: CREATE_ORDER + REQUEST });
+
+  try {
+    const response = await fetch('/api/order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(createOrderCartSelector(state)),
+    });
+
+    if (response.ok) {
+      dispatch({ type: CREATE_ORDER + SUCCESS });
+      dispatch(replace('/success'));
+    } else {
+      dispatch({ type: CREATE_ORDER + FAILURE, error: await response.json() });
+      dispatch(push('/error'));
+    }
+  } catch (error) {
+    dispatch({ type: CREATE_ORDER + FAILURE });
+    dispatch(push('/error'));
+  }
 };

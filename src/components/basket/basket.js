@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
@@ -8,10 +7,21 @@ import './basket.css';
 import itemStyles from './basket-item/basket-item.module.css';
 import BasketItem from './basket-item';
 import Button from '../button';
-import { orderProductsSelector, totalSelector } from '../../redux/selectors';
+import {
+  isSendingToServerSelector,
+  orderProductsSelector,
+  totalSelector,
+} from '../../redux/selectors';
 import { UserConsumer } from '../../contexts/user-context';
+import { checkout } from '../../redux/actions';
 
-function Basket({ title = 'Basket', total, orderProducts }) {
+function Basket({
+  title = 'Basket',
+  total,
+  orderProducts,
+  checkout,
+  isSendingToServer,
+}) {
   // const { name } = useContext(userContext);
 
   if (!total) {
@@ -40,6 +50,7 @@ function Basket({ title = 'Basket', total, orderProducts }) {
               amount={amount}
               subtotal={subtotal}
               restId={restId}
+              disabled={isSendingToServer}
             />
           </CSSTransition>
         ))}
@@ -53,11 +64,9 @@ function Basket({ title = 'Basket', total, orderProducts }) {
           <p>{`${total} $`}</p>
         </div>
       </div>
-      <Link to="/checkout">
-        <Button primary block>
-          checkout
-        </Button>
-      </Link>
+      <Button primary block onClick={checkout} disabled={isSendingToServer}>
+        Checkout
+      </Button>
     </div>
   );
 }
@@ -66,7 +75,12 @@ const mapStateToProps = (state) => {
   return {
     total: totalSelector(state),
     orderProducts: orderProductsSelector(state),
+    isSendingToServer: isSendingToServerSelector(state),
   };
 };
 
-export default connect(mapStateToProps)(Basket);
+const mapDispatchToProps = {
+  checkout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);
