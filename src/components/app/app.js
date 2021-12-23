@@ -15,6 +15,11 @@ const App = () => {
           <Redirect exact from="/" to="/restaurants" />
           <Route path="/checkout" component={Basket} />
           <Route path="/restaurants" component={Restaurants} />
+          <Route
+            path="/order-success"
+            component={() => <h2>Ваш заказ успешно оформлен.</h2>}
+          />
+          <Route path="/order-error" component={() => <h2>Ошибка</h2>} />
           <Route path="/error" component={() => <h2>Error Page!</h2>} />
           <Route path="/" component={() => <h2>404 - Page Not Found :(</h2>} />
         </Switch>

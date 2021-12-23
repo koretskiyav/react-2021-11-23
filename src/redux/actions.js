@@ -19,6 +19,7 @@ import {
   usersLoadedSelector,
   reviewsLoadingSelector,
   reviewsLoadedSelector,
+  sendOrderSelector,
 } from './selectors';
 
 export const increment = (id) => ({ type: INCREMENT, id });
@@ -76,4 +77,18 @@ export const loadUsers = () => async (dispatch, getState) => {
   if (loading || loaded) return;
 
   dispatch(_loadUsers());
+};
+
+export const sendOrder = () => async (dispatch, getState) => {
+  const state = getState();
+  const order = sendOrderSelector(state);
+  try {
+    const data = fetch('/api/order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(order),
+    }).then((res) => res.json());
+  } catch (error) {
+    dispatch(replace('/error'));
+  }
 };

@@ -86,3 +86,11 @@ export const averageRatingSelector = createSelector(
     );
   }
 );
+
+export const sendOrderSelector = (state) =>
+  Object.entries(state.order).map((entry) => {
+    return {
+      id: entry[0],
+      amount: entry[1],
+    };
+  });
