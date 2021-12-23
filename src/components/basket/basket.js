@@ -14,6 +14,7 @@ import {
 } from '../../redux/selectors';
 import { UserConsumer } from '../../contexts/user-context';
 import { checkout } from '../../redux/actions';
+import { useCurrency } from '../../contexts/currency-context';
 
 function Basket({
   title = 'Basket',
@@ -23,8 +24,9 @@ function Basket({
   isSendingToServer,
 }) {
   // const { name } = useContext(userContext);
+  const [newTotal, sign] = useCurrency(total);
 
-  if (!total) {
+  if (!newTotal) {
     return (
       <div className={styles.basket}>
         <h4 className={styles.title}>Select a meal from the list</h4>
@@ -61,7 +63,7 @@ function Basket({
           <p>Total</p>
         </div>
         <div className={itemStyles.info}>
-          <p>{`${total} $`}</p>
+          <p>{`${newTotal} ${sign}`}</p>
         </div>
       </div>
       <Button primary block onClick={checkout} disabled={isSendingToServer}>
