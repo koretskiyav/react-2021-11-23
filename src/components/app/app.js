@@ -4,6 +4,8 @@ import Header from '../header';
 import Basket from '../basket';
 import { UserProvider } from '../../contexts/user-context';
 import { useState } from 'react';
+import Success from '../success';
+import Error from '../error';
 
 const App = () => {
   const [name, setName] = useState('Andrey');
@@ -15,7 +17,12 @@ const App = () => {
           <Redirect exact from="/" to="/restaurants" />
           <Route path="/checkout" component={Basket} />
           <Route path="/restaurants" component={Restaurants} />
-          <Route path="/error" component={() => <h2>Error Page!</h2>} />
+          <Route path="/success">
+            <Success>Your order has been sent</Success>
+          </Route>
+          <Route path="/error">
+            <Error>Error Page!</Error>
+          </Route>
           <Route path="/" component={() => <h2>404 - Page Not Found :(</h2>} />
         </Switch>
       </UserProvider>

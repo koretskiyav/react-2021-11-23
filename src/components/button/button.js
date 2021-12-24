@@ -20,6 +20,7 @@ const Button = ({
   secondary = false,
   small = false,
   block = false,
+  disabled = false,
   ...props
 }) => {
   const Icon = icons[icon];
@@ -30,6 +31,7 @@ const Button = ({
         [styles.secondary]: secondary,
         [styles.small]: small,
         [styles.block]: block,
+        [styles.disabled]: disabled,
       })}
       {...props}
     >
@@ -45,6 +47,7 @@ Button.propTypes = {
   secondary: PropTypes.bool,
   small: PropTypes.bool,
   block: PropTypes.bool,
+  disabled: PropTypes.bool,
 };
 
 export default Button;
