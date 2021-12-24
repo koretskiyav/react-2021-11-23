@@ -9,6 +9,7 @@ import {
   LOAD_PRODUCTS,
   LOAD_REVIEWS,
   LOAD_USERS,
+  CHECKOUT,
   REQUEST,
   SUCCESS,
   FAILURE,
@@ -82,8 +83,6 @@ export const checkout = () => async (dispatch, getState) => {
   const checkoutPath = '/checkout';
   const state = getState();
   const path = state.router.location.pathname;
-  console.log('state');
-  console.log(state);
 
   if (path === checkoutPath) {
     const data = Object.keys(state.order).map((id) => ({
@@ -102,7 +101,7 @@ export const checkout = () => async (dispatch, getState) => {
     if (res.status === 200) {
       dispatch(push('/thankyou'));
     } else {
-      const msg = await res.text();
+      dispatch({ type: CHECKOUT + FAILURE, msg: await res.text() });
       dispatch(push('/error'));
     }
   } else {
