@@ -1,4 +1,4 @@
-import { replace } from 'connected-react-router';
+import { replace, push } from 'connected-react-router';
 import {
   DECREMENT,
   INCREMENT,
@@ -9,6 +9,7 @@ import {
   LOAD_PRODUCTS,
   LOAD_REVIEWS,
   LOAD_USERS,
+  CHECKOUT,
   REQUEST,
   SUCCESS,
   FAILURE,
@@ -76,4 +77,34 @@ export const loadUsers = () => async (dispatch, getState) => {
   if (loading || loaded) return;
 
   dispatch(_loadUsers());
+};
+
+export const checkout = () => async (dispatch, getState) => {
+  const checkoutPath = '/checkout';
+  const state = getState();
+  const path = state.router.location.pathname;
+
+  if (path === checkoutPath) {
+    const data = Object.keys(state.order).map((id) => ({
+      id,
+      amount: state.order[id],
+    }));
+
+    const res = await fetch(`/api/order`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+
+    if (res.status === 200) {
+      dispatch(push('/thankyou'));
+    } else {
+      dispatch({ type: CHECKOUT + FAILURE, msg: await res.text() });
+      dispatch(push('/error'));
+    }
+  } else {
+    dispatch(push(checkoutPath));
+  }
 };

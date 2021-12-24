@@ -9,9 +9,10 @@ import itemStyles from './basket-item/basket-item.module.css';
 import BasketItem from './basket-item';
 import Button from '../button';
 import { orderProductsSelector, totalSelector } from '../../redux/selectors';
+import { checkout } from '../../redux/actions';
 import { UserConsumer } from '../../contexts/user-context';
 
-function Basket({ title = 'Basket', total, orderProducts }) {
+function Basket({ title = 'Basket', total, orderProducts, checkout }) {
   // const { name } = useContext(userContext);
 
   if (!total) {
@@ -53,11 +54,9 @@ function Basket({ title = 'Basket', total, orderProducts }) {
           <p>{`${total} $`}</p>
         </div>
       </div>
-      <Link to="/checkout">
-        <Button primary block>
-          checkout
-        </Button>
-      </Link>
+      <Button primary block onClick={checkout}>
+        checkout
+      </Button>
     </div>
   );
 }
@@ -69,4 +68,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Basket);
+const mapDispatchToProps = {
+  checkout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Basket);
