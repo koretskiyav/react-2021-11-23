@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './tabs.module.css';
 
 export default function Tabs({ tabs, activeId, onChange }) {
-  console.log(onChange)
+
   return (
     <div className={styles.tabs}>
       {tabs.map(({ id, label }) => (
