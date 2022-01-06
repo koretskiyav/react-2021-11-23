@@ -54,7 +54,7 @@ export const tabsSelector = createSelector(
 export const restaurantSelector = (state, { id }) =>
   restaurantsSelector(state)[id];
 
-export const reviewWithUserSelector = createSelector(
+export const reviewWitUserSelector = createSelector(
   reviewSelector,
   usersSelector,
   (review, users) => ({

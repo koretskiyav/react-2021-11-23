@@ -1,9 +1,8 @@
 import { useMemo, useState } from 'react';
-
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
-import { connect } from 'react-redux';
 import { restaurantsListSelector } from '../../redux/selectors';
 
 function Restaurants({ restaurants }) {

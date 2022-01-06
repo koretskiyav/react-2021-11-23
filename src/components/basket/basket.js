@@ -1,10 +1,10 @@
-import { orderProductsSelector, totalSelector } from '../../redux/selectors';
+import { connect } from 'react-redux';
 
+import styles from './basket.module.css';
+import itemStyles from './basket-item/basket-item.module.css';
 import BasketItem from './basket-item';
 import Button from '../button';
-import { connect } from 'react-redux';
-import itemStyles from './basket-item/basket-item.module.css';
-import styles from './basket.module.css';
+import { orderProductsSelector, totalSelector } from '../../redux/selectors';
 
 function Basket({ title = 'Basket', total, orderProducts }) {
   if (!total) {

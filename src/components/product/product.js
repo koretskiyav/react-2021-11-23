@@ -1,11 +1,11 @@
-import { amountSelector, productSelector } from '../../redux/selectors';
-import { decrement, increment } from '../../redux/actions';
-
-import Button from '../button';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import styles from './product.module.css';
 import { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+
+import styles from './product.module.css';
+import Button from '../button';
+import { decrement, increment } from '../../redux/actions';
+import { amountSelector, productSelector } from '../../redux/selectors';
 
 function Product({ product, amount, decrement, increment, fetchData }) {
   useEffect(() => {

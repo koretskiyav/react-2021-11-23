@@ -1,7 +1,9 @@
-import Basket from '../basket';
 import { Component } from 'react';
-import Product from '../product';
 import PropTypes from 'prop-types';
+
+import Product from '../product';
+import Basket from '../basket';
+
 import styles from './menu.module.css';
 
 class Menu extends Component {

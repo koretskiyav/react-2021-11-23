@@ -12,7 +12,6 @@ export default (state = arrToMap(normalizedReviews), action) => {
         ...state,
         [reviewId]: { id: reviewId, userId, text, rating },
       };
-
     default:
       return state;
   }
