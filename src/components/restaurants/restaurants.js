@@ -1,18 +1,23 @@
-import { restaurantsSelector, tabsSelector } from '../../redux/selectors';
+import { useMemo, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import Restaurant from '../restaurant';
 import Tabs from '../tabs';
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { restaurantsListSelector } from '../../redux/selectors';
 
-function Restaurants({ tabs, restaurants }) {
-  const [activeId, setActiveId] = useState(Object.keys(restaurants)[0]);
+function Restaurants({ restaurants }) {
+  const [activeId, setActiveId] = useState(restaurants[0].id);
+
+  const tabs = useMemo(
+    () => restaurants.map(({ id, name }) => ({ id, label: name })),
+    [restaurants]
+  );
 
   return (
     <div>
       <Tabs tabs={tabs} onChange={setActiveId} activeId={activeId} />
-      <Restaurant restaurant={restaurants[activeId]} />
+      <Restaurant id={activeId} />
     </div>
   );
 }
@@ -27,8 +32,7 @@ Restaurants.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  restaurants: restaurantsSelector(state),
-  tabs: tabsSelector(state),
+  restaurants: restaurantsListSelector(state),
 });
 
 export default connect(mapStateToProps)(Restaurants);

@@ -1,10 +1,10 @@
-import { connect } from 'react-redux';
-
-import useForm from '../../../hooks/use-form';
-import Rate from '../../rate';
 import Button from '../../button';
-
+import PropTypes from 'prop-types';
+import Rate from '../../rate';
+import { addReview } from '../../../redux/actions';
+import { connect } from 'react-redux';
 import styles from './review-form.module.css';
+import useForm from '../../../hooks/use-form';
 
 const INITIAL_VALUES = { name: '', text: '', rating: 3 };
 
@@ -51,6 +51,12 @@ const ReviewForm = ({ onSubmit }) => {
   );
 };
 
-export default connect(null, () => ({
-  onSubmit: (values) => console.log(values), // TODO
-}))(ReviewForm);
+ReviewForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = (dispatch, props) => ({
+  onSubmit: (review) => dispatch(addReview(review, props.restId)),
+});
+
+export default connect(null, mapDispatchToProps)(ReviewForm);

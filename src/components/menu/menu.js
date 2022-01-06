@@ -1,18 +1,12 @@
-import { Component } from 'react';
-import PropTypes from 'prop-types';
-
-import Product from '../product';
 import Basket from '../basket';
-
+import { Component } from 'react';
+import Product from '../product';
+import PropTypes from 'prop-types';
 import styles from './menu.module.css';
 
 class Menu extends Component {
   static propTypes = {
-    menu: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string.isRequired,
-      }).isRequired
-    ).isRequired,
+    menu: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   };
 
   state = { error: null };

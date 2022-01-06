@@ -1,15 +1,10 @@
-import {
-  reviewRatingSelector,
-  reviewTextSelector,
-  reviewUserNameSelector,
-} from '../../../redux/selectors';
-
 import PropTypes from 'prop-types';
 import Rate from '../../rate';
 import { connect } from 'react-redux';
+import { reviewWithUserSelector } from '../../../redux/selectors';
 import styles from './review.module.css';
 
-const Review = ({ id, userName, text, rating }) => (
+const Review = ({ userName, text, rating }) => (
   <div className={styles.review} data-id="review">
     <div className={styles.content}>
       <div>
@@ -37,10 +32,6 @@ Review.defaultProps = {
   userName: 'Anonymous',
 };
 
-const mapStateToProps = (state, props) => ({
-  userName: reviewUserNameSelector(state, props.id),
-  text: reviewTextSelector(state, props.id),
-  rating: reviewRatingSelector(state, props.id),
-});
+const mapStateToProps = reviewWithUserSelector;
 
 export default connect(mapStateToProps)(Review);

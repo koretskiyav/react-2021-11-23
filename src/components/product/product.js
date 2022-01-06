@@ -58,8 +58,8 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, props) => ({
-  amount: amountSelector(state, props.id),
-  product: productSelector(state, props.id),
+  amount: amountSelector(state, props),
+  product: productSelector(state, props),
 });
 
 // const mapDispatchToProps = {
